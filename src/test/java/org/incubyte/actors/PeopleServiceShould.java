@@ -27,6 +27,8 @@ class PeopleServiceShould {
     Page page2;
     private final Clock clock = Clock.fixed(ZonedDateTime.parse("2021-10-25T00:00:00.000+09:00[Asia/Seoul]").toInstant(), ZoneId.of("Asia/Seoul"));
     Person person;
+    MovieWrapperDto movieWrapperDto;
+    List<Movie> movies;
 
     @BeforeEach
     public void init() {
@@ -50,6 +52,11 @@ class PeopleServiceShould {
         person = new Person();
         person.setBirthday("1962-07-03");
 
+        movieWrapperDto = new MovieWrapperDto();
+        movies = new ArrayList<>();
+        movies.add(new Movie());
+        movies.add(new Movie());
+        movieWrapperDto.setCast(movies);
     }
 
     @Test
@@ -77,5 +84,13 @@ class PeopleServiceShould {
         PeopleService peopleService = new PeopleService(tmbdClient);
         Optional<Person> person = peopleService.getById(500);
         assertThat(person.get().getAge()).isEqualTo(59);
+    }
+
+    @Test
+    void invoke_http_client_to_retrieve_list_of_movie_details() {
+        when(tmbdClient.getMovies(500,null)).thenReturn(Optional.ofNullable(movieWrapperDto));
+        PeopleService peopleService = new PeopleService(tmbdClient);
+        Optional<List<Movie>> movieDetails = peopleService.getMovieDetails(500);
+        verify(tmbdClient).getMovies(500,null);
     }
 }

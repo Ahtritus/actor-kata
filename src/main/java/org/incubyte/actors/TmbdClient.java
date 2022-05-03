@@ -8,9 +8,12 @@ import java.util.Optional;
 
 @Client("https://api.themoviedb.org/3/")
 public interface TmbdClient {
-    @Get("search/person{?query}{&api_key}")
-    Optional<Page> searchByName(@QueryValue String query, @QueryValue String api_key);
+  @Get("search/person{?query}{&api_key}")
+  Optional<Page> searchByName(@QueryValue String query, @QueryValue String api_key);
 
-    @Get("person/{id}{?api_key}")
-    Optional<Person> getById(int id, @QueryValue String api_key);
+  @Get("person/{id}{?api_key}")
+  Optional<Person> getById(int id, @QueryValue String api_key);
+
+  @Get("person/{id}/movie_credits{?api_key}")
+  Optional<MovieWrapperDto> getMovies(int id, @QueryValue String api_key);
 }

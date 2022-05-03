@@ -3,7 +3,6 @@ package org.incubyte.actors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -28,5 +27,12 @@ public class PeopleControllerShould {
         PeopleController peopleController = new PeopleController(peopleService);
         Optional<Person> person = peopleController.getById(500);
         verify(peopleService).getById(500);
+    }
+
+    @Test
+    public void invoke_service_to_get_movies_detail_by_person_id(){
+        PeopleController peopleController = new PeopleController(peopleService);
+        Optional<List<Movie>> movies = peopleController.getMovieDetails(500);
+        verify(peopleService).getMovieDetails(500);
     }
 }
