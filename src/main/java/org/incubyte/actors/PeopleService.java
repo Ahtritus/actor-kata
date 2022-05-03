@@ -50,6 +50,10 @@ public class PeopleService {
   public Optional<List<Movie>> getMovieDetails(int personId) {
     Optional<MovieWrapperDto> movies = tmbdClient.getMovies(personId, apiKey);
     return Optional.ofNullable(movies.get().getCast());
+  }
 
+  public Optional<List<TV>> getTVShowDetails(int personId) {
+    Optional<TVWrapperDto> tvShows = tmbdClient.getTVShows(personId, apiKey);
+    return Optional.ofNullable(tvShows.get().getCast());
   }
 }

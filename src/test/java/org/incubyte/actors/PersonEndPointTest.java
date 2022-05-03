@@ -83,4 +83,22 @@ public class PersonEndPointTest {
     assertThat(movieResult.getPosterPath()).isEqualTo("/6Biy7R9LfumYshur3YKhpj56MpB.jpg");
     assertThat(movieResult.getVoteCount()).isEqualTo(6843);
   }
+
+  @Test
+  void should_return_list_of_tv_shows_for_person() {
+    List<TV> tvShows =
+        httpClient
+            .toBlocking()
+            .retrieve(HttpRequest.GET("people/500/tv"), Argument.listOf(TV.class));
+
+    assertThat(tvShows).isNotEmpty();
+    TV tvResult = tvShows.get(0);
+    assertThat(tvResult).isNotNull();
+    assertThat(tvResult.getOriginalName()).isEqualTo("The One Show");
+    assertThat(tvResult.getCharacter()).isEqualTo("Self");
+    assertThat(tvResult.getOriginalLanguage()).isEqualTo("en");
+    assertThat(tvResult.getFirstAirDate()).isEqualTo(LocalDate.parse("2006-08-14"));
+    assertThat(tvResult.getPosterPath()).isEqualTo("/qCOlMsNSMDF5ZSvyzLJnFCqehkZ.jpg");
+    assertThat(tvResult.getVoteCount()).isEqualTo(14);
+  }
 }

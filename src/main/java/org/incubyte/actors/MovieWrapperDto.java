@@ -10,7 +10,7 @@ public class MovieWrapperDto {
     return cast;
   }
 
-  public void setCast(List<Movie> movies) {
-    this.cast = movies;
+  public void setCast(List<Movie> cast) {
+    this.cast = cast;
   }
 }

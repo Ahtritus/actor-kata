@@ -30,4 +30,9 @@ public class PeopleController {
   public Optional<List<Movie>> getMovieDetails(@PathVariable int id) {
     return peopleService.getMovieDetails(id);
   }
+
+  @Get("/{id}/tv")
+  public Optional<List<TV>> getTVShowDetails(int id) {
+    return peopleService.getTVShowDetails(id);
+  }
 }

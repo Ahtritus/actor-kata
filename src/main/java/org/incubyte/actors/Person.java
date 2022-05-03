@@ -3,60 +3,63 @@ package org.incubyte.actors;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Person {
-    private String name;
-    @JsonProperty("profile_path")
-    private String image;
-    private int age;
-    private int gender;
-    private String birthday;
-    @JsonProperty("place_of_birth")
-    private String placeOfBirth;
+  private String name;
 
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
+  @JsonProperty("profile_path")
+  private String image;
 
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
+  private int age;
+  private int gender;
+  private String birthday;
 
-    public String getName() {
-        return name;
-    }
+  @JsonProperty("place_of_birth")
+  private String placeOfBirth;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getPlaceOfBirth() {
+    return placeOfBirth;
+  }
 
-    public String getImage() {
-        return image;
-    }
+  public void setPlaceOfBirth(String placeOfBirth) {
+    this.placeOfBirth = placeOfBirth;
+  }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public int getAge() {
-        return age;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+  public String getImage() {
+    return image;
+  }
 
-    public int getGender() {
-        return gender;
-    }
+  public void setImage(String image) {
+    this.image = image;
+  }
 
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
+  public int getAge() {
+    return age;
+  }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+  public void setAge(int age) {
+    this.age = age;
+  }
 
-    public String getBirthday() {
-        return birthday;
-    }
+  public int getGender() {
+    return gender;
+  }
+
+  public void setGender(int gender) {
+    this.gender = gender;
+  }
+
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
 }
