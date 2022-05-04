@@ -42,4 +42,11 @@ public class PeopleControllerShould {
     verify(peopleService).getTVShowDetails(500);
   }
 
+  @Test
+  public void invoke_service_to_retrieve_list_of_popular_persons() {
+    PeopleController peopleController = new PeopleController(peopleService);
+    Optional<List<SearchResult>> results = peopleController.getPopular();
+    verify(peopleService).getPopular();
+  }
+
 }

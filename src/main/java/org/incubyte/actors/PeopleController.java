@@ -36,4 +36,8 @@ public class PeopleController {
     return peopleService.getTVShowDetails(id);
   }
 
+  @Get("/popular")
+  public Optional<List<SearchResult>> getPopular() {
+    return peopleService.getPopular();
+  }
 }

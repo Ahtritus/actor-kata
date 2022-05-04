@@ -71,8 +71,9 @@ class PeopleServiceShould {
     when(tmbdClient.searchByName("tom cruise", null)).thenReturn(Optional.of(page));
     PeopleService peopleService = new PeopleService(tmbdClient);
 
-    peopleService.searchByName("tom cruise");
+    Optional<List<SearchResult>> result = peopleService.searchByName("tom cruise");
     verify(tmbdClient).searchByName("tom cruise", null);
+    assertThat(result).isPresent();
   }
 
   @Test
@@ -80,7 +81,7 @@ class PeopleServiceShould {
     when(tmbdClient.searchByName("abc xyz", null)).thenReturn(Optional.of(page2));
     PeopleService peopleService = new PeopleService(tmbdClient);
     Optional<List<SearchResult>> results = peopleService.searchByName("abc xyz");
-    assertThat(results.isPresent()).isFalse();
+    assertThat(results).isEmpty();
   }
 
   @Test
@@ -107,5 +108,15 @@ class PeopleServiceShould {
     PeopleService peopleService = new PeopleService(tmbdClient);
     Optional<List<TV>> tvDetails = peopleService.getTVShowDetails(500);
     verify(tmbdClient).getTVShows(500, null);
+  }
+
+  @Test
+  void invoke_http_client_to_retrieve_list_of_popular_persons() {
+    when(tmbdClient.getPopular(null)).thenReturn(Optional.of(page));
+    PeopleService peopleService = new PeopleService(tmbdClient);
+
+    Optional<List<SearchResult>> result = peopleService.getPopular();
+    verify(tmbdClient).getPopular(null);
+    assertThat(result).isPresent();
   }
 }

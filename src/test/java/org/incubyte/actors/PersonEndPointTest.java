@@ -102,4 +102,19 @@ public class PersonEndPointTest {
     assertThat(tvResult.getVoteCount()).isEqualTo(14);
   }
 
+  @Test
+  void should_return_list_of_popular_people() {
+    List<SearchResult> results =
+        httpClient
+            .toBlocking()
+            .retrieve(
+                HttpRequest.GET("/people/popular"), Argument.listOf(SearchResult.class));
+
+    assertThat(results).isNotEmpty();
+    SearchResult result = results.get(0);
+    assertThat(result.getName()).isNotEmpty();
+    assertThat(result.getProfilePath()).isNotEmpty();
+    assertThat(result.getId()).isPositive();
+  }
+
 }

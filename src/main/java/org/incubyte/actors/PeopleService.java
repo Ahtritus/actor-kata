@@ -58,4 +58,13 @@ public class PeopleService {
   }
 
 
+  public Optional<List<SearchResult>> getPopular() {
+    Optional<Page> mayBeResultWrapper = tmbdClient.getPopular(apiKey);
+    Page page = mayBeResultWrapper.get();
+    List<SearchResult> results = page.getResults();
+    if (results.size() == 0) {
+      return Optional.empty();
+    }
+    return Optional.of(results);
+  }
 }
