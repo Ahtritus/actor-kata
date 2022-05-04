@@ -35,4 +35,5 @@ public class PeopleController {
   public Optional<List<TV>> getTVShowDetails(int id) {
     return peopleService.getTVShowDetails(id);
   }
+
 }

@@ -41,4 +41,5 @@ public class PeopleControllerShould {
     Optional<List<TV>> tvShows = peopleController.getTVShowDetails(500);
     verify(peopleService).getTVShowDetails(500);
   }
+
 }

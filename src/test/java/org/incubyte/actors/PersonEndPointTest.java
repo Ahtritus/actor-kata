@@ -101,4 +101,5 @@ public class PersonEndPointTest {
     assertThat(tvResult.getPosterPath()).isEqualTo("/qCOlMsNSMDF5ZSvyzLJnFCqehkZ.jpg");
     assertThat(tvResult.getVoteCount()).isEqualTo(14);
   }
+
 }
