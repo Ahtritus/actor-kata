@@ -1,4 +1,5 @@
 micronaut:
+  server.cors.enabled: true
   application:
     name: actor
 tmdb:
