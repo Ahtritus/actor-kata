@@ -31,6 +31,9 @@ class PeopleServiceShould {
   TVWrapperDto tvWrapperDto;
   List<TV> tvShows;
 
+  CompanyPage companyPage;
+  Company company;
+
   @BeforeEach
   public void init() {
     page = new Page();
@@ -64,6 +67,16 @@ class PeopleServiceShould {
     tvShows.add(new TV());
     tvShows.add(new TV());
     tvWrapperDto.setCast(tvShows);
+
+    companyPage = new CompanyPage();
+    company = new Company();
+    company.setId(1);
+    company.setLogoPath("asd");
+    company.setName("test name");
+
+    List<Company> companyResults = new ArrayList<>();
+    companyResults.add(company);
+    companyPage.setResults(companyResults);
   }
 
   @Test
@@ -117,6 +130,17 @@ class PeopleServiceShould {
 
     Optional<List<SearchResult>> result = peopleService.getPopular();
     verify(tmbdClient).getPopular(null);
+    assertThat(result).isPresent();
+  }
+
+
+  @Test
+  public void invoke_http_client_to_retrieve_list_of_companies() {
+    when(tmbdClient.searchByCompany("disney", null)).thenReturn(Optional.of(companyPage));
+    PeopleService peopleService = new PeopleService(tmbdClient);
+
+    Optional<List<Company>> result = peopleService.searchByCompany("disney");
+    verify(tmbdClient).searchByCompany("disney", null);
     assertThat(result).isPresent();
   }
 }

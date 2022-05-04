@@ -49,4 +49,11 @@ public class PeopleControllerShould {
     verify(peopleService).getPopular();
   }
 
+  @Test
+  public void invoke_service_to_retrieve_company_search_results() {
+    PeopleController peopleController = new PeopleController(peopleService);
+    Optional<List<Company>> results = peopleController.getCompanies("disney");
+    verify(peopleService).searchByCompany("disney");
+  }
+
 }

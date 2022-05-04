@@ -117,4 +117,18 @@ public class PersonEndPointTest {
     assertThat(result.getId()).isPositive();
   }
 
+  @Test
+  void should_search_for_companies_based_on_query() {
+    List<Company> results =  httpClient
+        .toBlocking()
+        .retrieve(
+            HttpRequest.GET("/company?query=disney"), Argument.listOf(Company.class));
+
+    assertThat(results).isNotEmpty();
+    Company result = results.get(2);
+    assertThat(result.getId()).isPositive();
+    assertThat(result.getLogoPath()).isNotEmpty();
+    assertThat(result.getName()).isNotEmpty();
+  }
+
 }

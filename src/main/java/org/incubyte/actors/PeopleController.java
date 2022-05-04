@@ -8,7 +8,7 @@ import io.micronaut.http.annotation.QueryValue;
 import java.util.List;
 import java.util.Optional;
 
-@Controller("people")
+@Controller("/")
 public class PeopleController {
   private final PeopleService peopleService;
 
@@ -16,28 +16,33 @@ public class PeopleController {
     this.peopleService = peopleService;
   }
 
-  @Get
+  @Get("people")
   public Optional<List<SearchResult>> searchByName(@QueryValue String query) {
     return peopleService.searchByName(query);
   }
 
-  @Get("/{id}")
+  @Get("people/{id}")
   public Optional<Person> getById(int id) {
     return peopleService.getById(id);
   }
 
-  @Get("/{id}/movies")
+  @Get("people/{id}/movies")
   public Optional<List<Movie>> getMovieDetails(@PathVariable int id) {
     return peopleService.getMovieDetails(id);
   }
 
-  @Get("/{id}/tv")
+  @Get("people/{id}/tv")
   public Optional<List<TV>> getTVShowDetails(int id) {
     return peopleService.getTVShowDetails(id);
   }
 
-  @Get("/popular")
+  @Get("people/popular")
   public Optional<List<SearchResult>> getPopular() {
     return peopleService.getPopular();
+  }
+
+  @Get("/company")
+  public Optional<List<Company>> getCompanies(@QueryValue String query) {
+    return peopleService.searchByCompany(query);
   }
 }

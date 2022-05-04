@@ -25,7 +25,7 @@ public class PeopleService {
     Optional<Page> mayBeResultWrapper = tmbdClient.searchByName(name, apiKey);
     Page page = mayBeResultWrapper.get();
     List<SearchResult> results = page.getResults();
-    if (results.size() == 0) {
+    if (results.isEmpty()) {
       return Optional.empty();
     }
     return Optional.of(results);
@@ -62,9 +62,20 @@ public class PeopleService {
     Optional<Page> mayBeResultWrapper = tmbdClient.getPopular(apiKey);
     Page page = mayBeResultWrapper.get();
     List<SearchResult> results = page.getResults();
-    if (results.size() == 0) {
+    if (results.isEmpty()) {
       return Optional.empty();
     }
     return Optional.of(results);
+  }
+
+  public Optional<List<Company>> searchByCompany(String company) {
+    Optional<CompanyPage> mayBeResultWrapper = tmbdClient.searchByCompany(company, apiKey);
+    CompanyPage companyPage = mayBeResultWrapper.get();
+    List<Company> results = companyPage.getResults();
+    if (results.isEmpty()) {
+      return Optional.empty();
+    }
+    return Optional.of(results);
+
   }
 }

@@ -22,4 +22,7 @@ public interface TmbdClient {
 
   @Get("person/popular{?api_key}")
   Optional<Page> getPopular(@QueryValue String api_key);
+
+  @Get("search/company{?query}{&api_key}")
+  Optional<CompanyPage> searchByCompany(String query, @QueryValue String api_key);
 }
